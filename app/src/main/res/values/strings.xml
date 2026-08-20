@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IntentDemo</string>
+    <string name="show_notification">SHOW NOTIFICATION</string>
 </resources>

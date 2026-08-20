@@ -1,0 +1,5 @@
+- `[x]` Add `POST_NOTIFICATIONS` permission to `AndroidManifest.xml`
+- `[x]` Add "Show Notification" button to `activity_second.xml`
+- `[x]` Implement notification logic in `SecondActivity.kt`
+- `[x]` Add permission request handling in `SecondActivity.kt`
+- `[x]` Verify notification displays correctly

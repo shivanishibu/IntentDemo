@@ -10,19 +10,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         val nameEditText = findViewById<EditText>(R.id.nameEditText)
-        val nextButton = findViewById<Button>(R.id.nextButton)
+        val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
+        val loginButton = findViewById<Button>(R.id.loginButton)
 
-        nextButton.setOnClickListener {
+        loginButton.setOnClickListener {
 
-            val name = nameEditText.text.toString()
+            val name = nameEditText.text.toString().trim()
 
+            // If name is empty, use Guest
+            val userName = if (name.isEmpty()) {
+                "Guest"
+            } else {
+                name
+            }
+
+            // Create Intent
             val intent = Intent(this, SecondActivity::class.java)
 
-            intent.putExtra("USER_NAME", name)
+            // Send username to SecondActivity
+            intent.putExtra("USER_NAME", userName)
 
+            // Open Welcome screen
             startActivity(intent)
         }
     }

@@ -1,44 +1,41 @@
-# Implementation Plan - Perfecting the Login Page
+# Implementation Plan - Experiment 5: Display Notification in Android
 
-The goal is to transform the existing simple input screen into a modern, professional Login page following Material 3 design principles and Android best practices.
+Implement the notification feature as specified in the lab manual, integrating it into the existing `SecondActivity`.
+
+## User Review Required
+
+> [!IMPORTANT]
+> This feature requires the `POST_NOTIFICATIONS` permission on Android 13 (API 33) and above. I will add logic to request this permission when the "Show Notification" button is clicked.
 
 ## Proposed Changes
 
-### [Component] Build Configuration
-#### [MODIFY] [build.gradle.kts](file:///C:/Users/USER/AndroidStudioProjects/IntentDemo/app/build.gradle.kts)
-- Enable `viewBinding`.
-
-### [Component] Resources
-#### [MODIFY] [strings.xml](file:///C:/Users/USER/AndroidStudioProjects/IntentDemo/app/src/main/res/values/strings.xml)
-- Add strings for login labels, hints, and validation errors.
+### [Component] Android Manifest
+#### [MODIFY] [AndroidManifest.xml](file:///C:/Users/USER/AndroidStudioProjects/IntentDemo/app/src/main/AndroidManifest.xml)
+- Add `<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />`.
 
 ### [Component] Layout
-#### [MODIFY] [activity_main.xml](file:///C:/Users/USER/AndroidStudioProjects/IntentDemo/app/src/main/res/layout/activity_main.xml)
-- Replace `LinearLayout` with `ConstraintLayout`.
-- Use `com.google.android.material.textfield.TextInputLayout` for Email and Password.
-- Use `TextInputEditText` for the actual input fields.
-- Add a password visibility toggle.
-- Improve spacing and alignment.
-- Style the Login button as a `MaterialButton`.
+#### [MODIFY] [activity_second.xml](file:///C:/Users/USER/AndroidStudioProjects/IntentDemo/app/src/main/res/layout/activity_second.xml)
+- Add a "Show Notification" button above the logout button.
 
 ### [Component] Activity Logic
-#### [MODIFY] [MainActivity.kt](file:///C:/Users/USER/AndroidStudioProjects/IntentDemo/app/src/main/java/com/example/intentdemo/MainActivity.kt)
-- Implement View Binding.
-- Implement Edge-to-edge support for a modern look.
-- Add input validation logic:
-    - Check for empty Email and Password.
-    - Validate Email format.
-    - Show real-time or button-click error feedback using `TextInputLayout.error`.
-- On successful validation, pass the "username" (part of email) to `SecondActivity`.
+#### [MODIFY] [SecondActivity.kt](file:///C:/Users/USER/AndroidStudioProjects/IntentDemo/app/src/main/java/com/example/intentdemo/SecondActivity.kt)
+- Define `channelId` and `notificationId` constants.
+- In `onCreate`:
+    - Call `createNotificationChannel()`.
+    - Set up the "Show Notification" button click listener.
+- Implement `createNotificationChannel()` to set up the channel for Android 8.0+.
+- Implement `showNotification()` using `NotificationCompat.Builder` with:
+    - Title: "Hello"
+    - Text: "This is an android notification"
+    - Small Icon: `R.drawable.ic_launcher_foreground`
+    - Priority: `PRIORITY_DEFAULT`
+    - AutoCancel: `true`
+- Add permission handling logic to request `POST_NOTIFICATIONS` if needed before showing the notification.
 
 ## Verification Plan
 
 ### Manual Verification
-- Deploy to an Android device/emulator.
-- Verify the UI looks professional and follows Material 3 (Material Design 3).
-- Test validation:
-    - Click "Login" with empty fields -> should show errors.
-    - Enter invalid email -> should show error.
-    - Enter valid details -> should navigate to `SecondActivity` and display the name correctly.
-- Verify password masking and visibility toggle.
-- Check Edge-to-edge behavior (system bars should be transparent/blended).
+1.  Run the app and log in to reach `SecondActivity`.
+2.  Click the new "Show Notification" button.
+3.  If on Android 13+, allow the notification permission when prompted.
+4.  Verify that a notification appears in the system tray with the title "Hello" and the text "This is an android notification".

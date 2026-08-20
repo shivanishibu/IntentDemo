@@ -1,31 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:fillViewport="true"
+    android:background="@drawable/login_background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Intent Demo"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="30dp" />
-
-    <EditText
-        android:id="@+id/nameEditText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your name"
-        android:inputType="text"
-        android:layout_marginBottom="20dp" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="28dp">
 
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go to Second Activity" />
+        <!-- Logo -->
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:text="✦"
+            android:textSize="48sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/logo_background" />
 
-</LinearLayout>
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="Welcome Back!"
+            android:textColor="#302080"
+            android:textSize="31sp"
+            android:textStyle="bold" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Login to continue"
+            android:textColor="#686473"
+            android:textSize="17sp" />
+
+        <!-- Username -->
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/edittext_background"
+            android:hint="Email or Username"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#17141F"
+            android:textColorHint="#8A8791"
+            android:textSize="16sp"
+            android:inputType="text" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edittext_background"
+            android:hint="Password"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="#17141F"
+            android:textColorHint="#8A8791"
+            android:textSize="16sp"
+            android:inputType="textPassword" />
+
+        <!-- Forgot Password -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="end"
+            android:text="Forgot Password?"
+            android:textColor="#5E35D8"
+            android:textSize="14sp" />
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="28dp"
+            android:text="LOGIN"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/login_button"
+            android:elevation="5dp" />
+
+        <!-- Bottom text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Simple • Secure • Easy"
+            android:textColor="#77727F"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</ScrollView>
