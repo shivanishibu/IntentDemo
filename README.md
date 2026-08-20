@@ -67,6 +67,8 @@ NotificationManagerCompat.from(this).notify(notificationId, builder.build())
 
 ![IntentDemo Screenshot](Screenshots/Screenshot1.png)
 
+![IntentDemo Screenshot](Screenshots/Screenshot2.png)
+
 ## 📄 License
 
 This project is open-source and available under the [MIT License](LICENSE).
