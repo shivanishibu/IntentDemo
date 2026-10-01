@@ -125,6 +125,46 @@
             </LinearLayout>
 
 
+            <!-- SQLite Data Persistence Card -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="25dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/white_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🗄️ SQLite Data Persistence"
+                    android:textColor="#5E35D8"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/sqliteUserText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Stored Username: --"
+                    android:textColor="#17141F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/sqlitePasswordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Stored Password: --"
+                    android:textColor="#686473"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
             <!-- Show Notification Button -->
 
             <Button

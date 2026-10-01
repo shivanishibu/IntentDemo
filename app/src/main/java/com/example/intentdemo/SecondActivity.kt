@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -25,6 +26,8 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
         val welcomeText = findViewById<TextView>(R.id.welcomeText)
+        val sqliteUserText = findViewById<TextView>(R.id.sqliteUserText)
+        val sqlitePasswordText = findViewById<TextView>(R.id.sqlitePasswordText)
         val notifyButton = findViewById<Button>(R.id.notifyButton)
         val logoutButton = findViewById<Button>(R.id.logoutButton)
 
@@ -33,6 +36,17 @@ class SecondActivity : AppCompatActivity() {
 
         // Display name
         welcomeText.text = "Welcome, $name! 👋"
+
+        // Fetch stored user data from SQLite Database
+        val dbHelper = DatabaseHelper(this)
+        val storedUser = dbHelper.getStoredUser()
+        if (storedUser != null) {
+            sqliteUserText.text = "Stored Username: ${storedUser.first}"
+            sqlitePasswordText.text = "Stored Password: ${if (storedUser.second.isNotEmpty()) "•••••••• (${storedUser.second})" else "None"}"
+        } else {
+            sqliteUserText.text = "Stored Username: $name (SharedPreferences)"
+            sqlitePasswordText.text = "Stored Password: None"
+        }
 
         // Show welcome pop-up (Toast)
         Toast.makeText(this, "Login Successful! Welcome, $name", Toast.LENGTH_SHORT).show()
@@ -55,6 +69,15 @@ class SecondActivity : AppCompatActivity() {
 
         // Logout
         logoutButton.setOnClickListener {
+            // Clear active login session in SharedPreferences
+            val sharedPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            sharedPrefs.edit().putBoolean("is_logged_in", false).apply()
+
+            // Return to MainActivity
+            val intent = Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
             finish()
         }
     }
